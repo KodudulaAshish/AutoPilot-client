@@ -3,9 +3,9 @@ import styles from './chatPane.module.css'
 import Markdown from 'react-markdown';
 import rehypeHighlight from 'rehype-highlight';
 import 'highlight.js/styles/github.css'; 
-import NewQueryBox from './QueryBox.js/newQueryBox';
-import CopyToClipboard from './addOnFunctions/copyToClipBoard';
-import ListenResponse from './addOnFunctions/listenResponse';
+import NewQueryBox from '../components/QueryBox.js/newQueryBox';
+import CopyToClipboard from '../components/addOnFunctions/copyToClipBoard';
+import ListenResponse from '../components/addOnFunctions/listenResponse';
 
 const ChatPane = () => {
     const [infoText, setInfoText] = useState('');

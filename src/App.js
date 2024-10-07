@@ -1,11 +1,23 @@
+import React from 'react';
 import './App.css';
-import ChatPane from './components/chatPane';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import LoginPane from './pages/loginPane';
+import ChatPane from './pages/chatPane'; // Example of a protected component
+import ProtectedRoute from './components/protectedRoute';
 
 function App() {
   return (
-    <div className='container'>
-      <ChatPane/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/auth" element={<LoginPane/>} />
+        <Route path="/chat" element={
+          <ProtectedRoute>
+            <ChatPane/>
+          </ProtectedRoute>}>
+        </Route>
+        <Route path='*' element={<LoginPane/>} />
+      </Routes>
+    </Router>
   );
 }
 
