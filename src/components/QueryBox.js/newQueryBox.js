@@ -12,10 +12,6 @@ const NewQueryBox = ({ conversation, setConversation, setInfoText, chatEndRef })
 
     const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
 
-    const axiosInstance = axios.create({
-        baseURL: backendUrl,
-    })
-
     function formDataToObject(formData) {
         const obj = {};
         formData.forEach((value, key) => {
@@ -40,7 +36,7 @@ const NewQueryBox = ({ conversation, setConversation, setInfoText, chatEndRef })
             formData.append('history', JSON.stringify(conversation));
             formData.append('query', question);
 
-            const LLMResponse = await axiosInstance.post('/chat', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+            const LLMResponse = await axiosInstance.post(backendUrl + '/chat', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
 
             formData.append('role', 'user');
             formData.delete('history');

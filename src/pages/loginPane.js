@@ -14,10 +14,12 @@ function Login() {
     const [errorMsg, setErrorMsg] = useState('');
     const navigate = useNavigate();
 
+    const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:5000';
+
     const loginUser = async () => {
         setLoading('true');
         try {
-            const res = await axios.post('http://localhost:5000/auth', { email, password });
+            const res = await axios.post(backendUrl + '/auth', { email, password });
             console.log(res);
             localStorage.setItem('token', res.data.token); // Store JWT token in localStorage
             navigate('/chat'); // Redirect to protected route
@@ -38,7 +40,7 @@ function Login() {
 
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:5000/register', { email, password });
+            const res = await axios.post(backendUrl + '/register', { email, password });
             console.log(res);
             localStorage.setItem('token', res.data.token);
             navigate('/chat');
