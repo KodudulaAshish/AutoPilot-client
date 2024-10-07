@@ -36,7 +36,7 @@ const NewQueryBox = ({ conversation, setConversation, setInfoText, chatEndRef })
             formData.append('history', JSON.stringify(conversation));
             formData.append('query', question);
 
-            const LLMResponse = await axiosInstance.post(backendUrl + '/chat', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
+            const LLMResponse = await axios.post(backendUrl + '/chat', formData, { headers: { 'Content-Type': 'multipart/form-data' } });
 
             formData.append('role', 'user');
             formData.delete('history');
