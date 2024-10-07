@@ -25,7 +25,7 @@ function Login() {
             navigate('/chat'); // Redirect to protected route
         } catch (error) {
             console.error('Login failed:', error);
-            setErrorMsg(error.response.data.message);
+            setErrorMsg(error.response.data.message || error.response.message);
             setTimeout(() => setErrorMsg(''), 3000);
         }
         setLoading('false');
